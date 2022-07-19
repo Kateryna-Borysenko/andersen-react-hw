@@ -1,10 +1,15 @@
+import React, { Component } from "react";
+import Container from "./components/Container/Container";
+import Form from "./components/Form/Form";
 
-function App() {
-  return (
-    <div className="App">
-      questionnaire
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Container>
+        <Form />
+      </Container>
+    );
+  }
 }
 
 export default App;
