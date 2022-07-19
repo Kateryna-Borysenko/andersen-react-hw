@@ -55,82 +55,80 @@ class Form extends Component {
 
     return (
       <form className={s.form}>
-        <div className="formWrapper">
-          <Input
-            label="Имя"
-            type="text"
-            name="name"
-            value={name}
-            placeholder="пример: Екатерина"
-            onChange={this.handleChange}
-          />
+        <Input
+          label="Имя"
+          type="text"
+          name="name"
+          value={name}
+          placeholder="пример: Екатерина"
+          onChange={this.handleChange}
+        />
 
-          <Input
-            label="Фамилия"
-            type="text"
-            name="surname"
-            value={surname}
-            placeholder="пример: Борисенко"
-            onChange={this.handleChange}
-          />
+        <Input
+          label="Фамилия"
+          type="text"
+          name="surname"
+          value={surname}
+          placeholder="пример: Борисенко"
+          onChange={this.handleChange}
+        />
 
-          <Input
-            label="Дата Рождения"
-            type="date"
-            name="birthDate"
-            value={birthDate}
-            onChange={this.handleChange}
-          />
+        <Input
+          label="Дата Рождения"
+          type="date"
+          name="birthDate"
+          value={birthDate}
+          onChange={this.handleChange}
+        />
 
-          <Input
-            label="Телефон"
-            type="tel"
-            name="phone"
-            value={phone}
-            placeholder="пример: +38 098 205 XX XX"
-            onChange={this.handleChange}
-          />
+        <Input
+          label="Телефон"
+          type="tel"
+          name="phone"
+          value={phone}
+          placeholder="пример: +38 098 205 XX XX"
+          onChange={this.handleChange}
+        />
 
-          <Input
-            label="Сайт"
-            type="text"
-            name="website"
-            value={website}
-            placeholder="пример: https://website.com"
-            onChange={this.handleChange}
-          />
+        <Input
+          label="Сайт"
+          type="text"
+          name="website"
+          value={website}
+          placeholder="пример: https://website.com"
+          onChange={this.handleChange}
+        />
 
-          <TextArea
-            label="О себе"
-            name="about"
-            value={about}
-            rows={7}
-            placeholder="Напишите коротко о себе ..."
-            onChange={this.handleChange}
-          />
+        <TextArea
+          label="О себе"
+          name="about"
+          value={about}
+          rows={7}
+          placeholder="Напишите коротко о себе ..."
+          onChange={this.handleChange}
+        />
 
-          <TextArea
-            label="Стек технологий"
-            name="technologies"
-            value={technologies}
-            rows={7}
-            placeholder="Перечислите стек технологий которыми Вы владеете..."
-            onChange={this.handleChange}
-          />
+        <TextArea
+          label="Стек технологий"
+          name="technologies"
+          value={technologies}
+          rows={7}
+          placeholder="Перечислите стек технологий которыми Вы владеете..."
+          onChange={this.handleChange}
+        />
 
-          <TextArea
-            label="Описание последнего проекта"
-            name="lastProject"
-            value={lastProject}
-            rows={7}
-            placeholder="Опишите свой последний проект..."
-            onChange={this.handleChange}
-          />
+        <TextArea
+          label="Описание последнего проекта"
+          name="lastProject"
+          value={lastProject}
+          rows={7}
+          placeholder="Опишите свой последний проект..."
+          onChange={this.handleChange}
+        />
 
-          <div className={s.buttonWrapper}>
-            <Button text="Отменить" type="button" onClick={this.reset} />
-            <Button text="Добавить" type="button" onClick={this.handleSubmit} />
-          </div>
+        <div className={s.buttonWrapper}>
+          <Button text="Отменить" type="button" onClick={this.reset} />
+          <Button text="Сохранить" type="button" onClick={this.handleSubmit} />
         </div>
       </form>
     );

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import s from "./TextArea.module.css";
-// import ErrorMsg from "../ErrorMsg/ErrorMsg";
+import ErrorMsg from "../ErrorMsg/ErrorMsg";
 
 class TextArea extends Component {
   render() {
@@ -19,7 +19,7 @@ class TextArea extends Component {
           onChange={(e) => this.props.onChange(e)}
           required
         ></textarea>
-        {/* <ErrorMsg /> */}
+        <ErrorMsg />
       </label>
     );
   }

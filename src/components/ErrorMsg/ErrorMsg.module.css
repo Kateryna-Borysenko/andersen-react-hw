@@ -1,3 +1,5 @@
 .error {
+  margin: 5px 0;
   color: red;
+  opacity: 0;
 }
