@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import s from "./Input.module.css";
-import ErrorMsg from "../ErrorMsg/ErrorMsg";
+// import ErrorMsg from "../ErrorMsg/ErrorMsg";
 
 class Input extends Component {
   render() {
@@ -20,7 +20,7 @@ class Input extends Component {
             className={s.input}
             required
           />
-          <ErrorMsg />
+          {/* <ErrorMsg /> */}
         </label>
       </>
     );
