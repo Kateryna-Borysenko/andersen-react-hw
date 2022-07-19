@@ -28,3 +28,8 @@
 .input::placeholder {
   font-size: 16px;
 }
+
+.input[type="date"]:invalid::-webkit-datetime-edit {
+  color: gray;
+  font-size: 16px;
+}
