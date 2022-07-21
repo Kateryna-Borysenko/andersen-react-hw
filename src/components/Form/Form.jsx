@@ -4,6 +4,7 @@ import s from "./Form.module.css";
 import Input from "../Input/Input";
 import TextArea from "../TextArea/TextArea";
 import Button from "../Button/Button";
+import ErrorMsg from "../ErrorMsg/ErrorMsg";
 
 class Form extends Component {
   state = {
@@ -15,6 +16,7 @@ class Form extends Component {
     about: "",
     technologies: "",
     lastProject: "",
+    isError: true,
   };
 
   handleChange = (e) => {
@@ -51,6 +53,7 @@ class Form extends Component {
       about,
       technologies,
       lastProject,
+      isError,
     } = this.state;
 
     return (
@@ -64,6 +67,8 @@ class Form extends Component {
           onChange={this.handleChange}
         />
 
+        {isError && <ErrorMsg message={"Error Message"} />}
+
         <Input
           label="Фамилия"
           type="text"
@@ -72,6 +77,7 @@ class Form extends Component {
           placeholder="пример: Борисенко"
           onChange={this.handleChange}
         />
+        {isError && <ErrorMsg message={""} />}
 
         <Input
           label="Дата Рождения"
@@ -80,6 +86,7 @@ class Form extends Component {
           value={birthDate}
           onChange={this.handleChange}
         />
+        {isError && <ErrorMsg message={""} />}
 
         <Input
           label="Телефон"
@@ -89,6 +96,7 @@ class Form extends Component {
           placeholder="пример: +38 098 205 XX XX"
           onChange={this.handleChange}
         />
+        {isError && <ErrorMsg message={""} />}
 
         <Input
           label="Сайт"
@@ -98,6 +106,7 @@ class Form extends Component {
           placeholder="пример: https://website.com"
           onChange={this.handleChange}
         />
+        {isError && <ErrorMsg message={""} />}
 
         <TextArea
           label="О себе"
@@ -107,6 +116,7 @@ class Form extends Component {
           placeholder="Напишите коротко о себе ..."
           onChange={this.handleChange}
         />
+        {isError && <ErrorMsg message={""} />}
 
         <TextArea
           label="Стек технологий"
@@ -116,6 +126,7 @@ class Form extends Component {
           placeholder="Перечислите стек технологий которыми Вы владеете..."
           onChange={this.handleChange}
         />
+        {isError && <ErrorMsg message={""} />}
 
         <TextArea
           label="Описание последнего проекта"
@@ -125,6 +136,7 @@ class Form extends Component {
           placeholder="Опишите свой последний проект..."
           onChange={this.handleChange}
         />
+        {isError && <ErrorMsg message={""} />}
 
         <div className={s.buttonWrapper}>
           <Button text="Отменить" type="button" onClick={this.reset} />

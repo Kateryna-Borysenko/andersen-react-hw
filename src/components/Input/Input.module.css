@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
+  margin-top: 10px;
 }
 
 .input {
