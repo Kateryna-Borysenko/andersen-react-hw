@@ -16,7 +16,7 @@ class Form extends Component {
     about: "",
     technologies: "",
     lastProject: "",
-    isError: true,
+    isError: false,
   };
 
   handleChange = (e) => {
@@ -64,6 +64,8 @@ class Form extends Component {
           name="name"
           value={name}
           placeholder="пример: Екатерина"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          message="Фамилия может содержать только буквы, апостроф, тире и пробелы."
           onChange={this.handleChange}
         />
 
@@ -75,6 +77,8 @@ class Form extends Component {
           name="surname"
           value={surname}
           placeholder="пример: Борисенко"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          message="Фамилия может содержать только буквы, апостроф, тире и пробелы."
           onChange={this.handleChange}
         />
         {isError && <ErrorMsg message={""} />}
@@ -94,6 +98,8 @@ class Form extends Component {
           name="phone"
           value={phone}
           placeholder="пример: +38 098 205 XX XX"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          message="Номер телефона должен состоять из цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           onChange={this.handleChange}
         />
         {isError && <ErrorMsg message={""} />}
@@ -140,7 +146,7 @@ class Form extends Component {
 
         <div className={s.buttonWrapper}>
           <Button text="Отменить" type="button" onClick={this.reset} />
-          <Button text="Сохранить" type="button" onClick={this.handleSubmit} />
+          <Button text="Сохранить" type="submit" onClick={this.handleSubmit} />
         </div>
       </form>
     );

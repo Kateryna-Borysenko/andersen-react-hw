@@ -19,21 +19,15 @@ class App extends Component {
     ],
   };
 
-  onSubmit = (newData) => {
-    const isInDataList = (data) => data.phone === newData.phone;
-
-    this.state.data.some(isInDataList)
-      ? alert(
-          `${newData.phone} Пользователь с таким номером телефона уже существует`
-        )
-      : this.setState((prevState) => ({
-          data: [
-            ...prevState.data,
-            {
-              ...newData,
-            },
-          ],
-        }));
+  handleAddData = (newData) => {
+    this.setState((prevState) => ({
+      data: [
+        ...prevState.data,
+        {
+          ...newData,
+        },
+      ],
+    }));
   };
 
   render() {
@@ -56,7 +50,7 @@ class App extends Component {
               Lorem Ipsum.
             </p>
           </div>
-          <Form onSubmit={this.onSubmit} />
+          <Form onSubmit={this.handleAddData} />
         </div>
       </Container>
     );

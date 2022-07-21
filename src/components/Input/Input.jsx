@@ -4,7 +4,7 @@ import s from "./Input.module.css";
 
 class Input extends Component {
   render() {
-    const { label, type, name, placeholder } = this.props;
+    const { label, type, name, placeholder, pattern, message } = this.props;
 
     return (
       <>
@@ -17,7 +17,9 @@ class Input extends Component {
             placeholder={placeholder}
             onChange={(e) => this.props.onChange(e)}
             className={s.input}
-            required
+            pattern={pattern}
+            message={message}
+            // required
           />
         </label>
       </>
@@ -30,6 +32,8 @@ Input.propTypes = {
   value: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  pattern: PropTypes.string,
+  message: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };

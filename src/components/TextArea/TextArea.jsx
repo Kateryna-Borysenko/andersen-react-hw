@@ -16,7 +16,7 @@ class TextArea extends Component {
           rows={rows}
           placeholder={placeholder}
           onChange={(e) => this.props.onChange(e)}
-          required
+          // required
         ></textarea>
       </label>
     );
