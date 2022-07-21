@@ -4,10 +4,14 @@ import s from "./Button.module.css";
 
 class Button extends Component {
   render() {
-    const { text, icon, onClick } = this.props;
+    const { text, icon, disabled, onClick } = this.props;
 
     return (
-      <button className={s.button} onClick={onClick}>
+      <button
+        className={disabled ? s.disabled : s.button}
+        onClick={onClick}
+        disabled={disabled}
+      >
         {icon && <img src={icon} alt={text} />}
         <span>{text}</span>
       </button>
@@ -23,6 +27,7 @@ Button.defaultProps = {
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   icon: PropTypes.string,
+  disabled: PropTypes.bool,
 };
 
 export default Button;

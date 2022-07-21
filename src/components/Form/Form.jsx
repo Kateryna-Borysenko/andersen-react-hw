@@ -17,6 +17,7 @@ class Form extends Component {
     technologies: "",
     lastProject: "",
     isError: false,
+    disabled: false,
   };
 
   handleChange = (e) => {
@@ -39,7 +40,9 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
     this.props.onSubmit({ id: nanoid(), ...this.state });
+
     this.reset();
   };
 
@@ -54,6 +57,7 @@ class Form extends Component {
       technologies,
       lastProject,
       isError,
+      disabled,
     } = this.state;
 
     return (
@@ -146,10 +150,16 @@ class Form extends Component {
 
         <div className={s.buttonWrapper}>
           <Button text="Отменить" type="button" onClick={this.reset} />
-          <Button text="Сохранить" type="submit" onClick={this.handleSubmit} />
+          <Button
+            text="Сохранить"
+            type="submit"
+            disabled={disabled}
+            onClick={this.handleSubmit}
+          />
         </div>
       </form>
     );
   }
 }
+
 export default Form;
