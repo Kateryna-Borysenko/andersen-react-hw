@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Container from "../common/Container/Container";
 import Form from "../Form/Form";
-import image from "../../images/rocket.png";
+import brain from "../../images/brain.png";
+import rocket from "../../images/rocket.png";
 import s from "./App.module.css";
 class App extends Component {
   state = {
@@ -23,14 +24,18 @@ class App extends Component {
   };
 
   render() {
+    const { isFormOpen } = this.state;
     return (
       <Container>
         <div className={s.wrap}>
           <div className={s.contentWrap}>
             <h1 className={s.title}>Создание анкеты</h1>
-            <img src={image} className={s.image} alt="brain" />
+            {!isFormOpen && <img src={brain} className={s.image} alt="brain" />}
+            {isFormOpen && (
+              <img src={rocket} className={s.image} alt="rocket" />
+            )}
           </div>
-          {this.state.isFormOpen && <Form onSubmit={this.handleAddData} />}
+          {isFormOpen && <Form onSubmit={this.handleAddData} />}
         </div>
       </Container>
     );
