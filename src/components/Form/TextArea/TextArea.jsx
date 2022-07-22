@@ -4,20 +4,26 @@ import s from "./TextArea.module.css";
 
 class TextArea extends Component {
   render() {
-    const { rows, label, name, placeholder } = this.props;
+    const { rows, label, name, value, placeholder, maxLength, onChange } =
+      this.props;
 
     return (
       <label className={s.label}>
         {label}
         <textarea
-          value={name.value}
+          value={value}
           name={name}
           className={s.textArea}
           rows={rows}
           placeholder={placeholder}
-          onChange={(e) => this.props.onChange(e)}
-          // required
+          maxLength={maxLength}
+          onChange={onChange}
+          required
         ></textarea>
+
+        <div className={s.message}>
+          осталось символов : {maxLength - value.length} / {maxLength}
+        </div>
       </label>
     );
   }
@@ -30,6 +36,7 @@ TextArea.propTypes = {
   rows: PropTypes.number.isRequired,
   placeholder: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  maxLength: PropTypes.number.isRequired,
 };
 
 export default TextArea;
