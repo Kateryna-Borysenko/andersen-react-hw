@@ -6,37 +6,28 @@ import TextArea from "../TextArea/TextArea";
 import Button from "../Button/Button";
 import ErrorMsg from "../ErrorMsg/ErrorMsg";
 
+const INITIAL_STATE = {
+  name: "",
+  surname: "",
+  birthDate: "",
+  phone: "",
+  website: "",
+  about: "",
+  technologies: "",
+  lastProject: "",
+  isError: false,
+  disabled: false,
+};
+
 class Form extends Component {
-  state = {
-    name: "",
-    surname: "",
-    birthDate: "",
-    phone: "",
-    website: "",
-    about: "",
-    technologies: "",
-    lastProject: "",
-    isError: false,
-    disabled: false,
-  };
+  state = { ...INITIAL_STATE };
 
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
 
-  reset = () => {
-    this.setState({
-      name: "",
-      surname: "",
-      birthDate: "",
-      phone: "",
-      website: "",
-      about: "",
-      technologies: "",
-      lastProject: "",
-    });
-  };
+  reset = () => this.setState({ ...INITIAL_STATE });
 
   handleSubmit = (e) => {
     e.preventDefault();
