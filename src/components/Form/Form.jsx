@@ -23,8 +23,24 @@ class Form extends Component {
   state = { ...INITIAL_STATE };
 
   handleChange = (e) => {
+    const normalize = (text) => {
+      const words = text.split(" ");
+      return words
+        .map((word) => {
+          const capLetter = word.charAt(0).toUpperCase();
+          const rest = word.substring(1);
+          return `${capLetter}${rest}`;
+        })
+        .join(" ");
+    };
+
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+
+    if (name === "name" || "surname") {
+      this.setState({ [name]: normalize(value).trim() });
+    } else {
+      this.setState({ [name]: value.trim() });
+    }
   };
 
   reset = () => this.setState({ ...INITIAL_STATE });
@@ -92,9 +108,9 @@ class Form extends Component {
           type="tel"
           name="phone"
           value={phone}
-          placeholder="пример: +38 098 205 XX XX"
+          placeholder="пример: 7-7777-77-77"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          message="Номер телефона должен состоять из цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          message="Номер телефона должен состоять из максимум 12 символом с учетом дефисов"
           onChange={this.handleChange}
         />
         {isError && <ErrorMsg message={""} />}
