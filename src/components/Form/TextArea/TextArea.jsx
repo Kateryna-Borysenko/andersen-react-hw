@@ -4,8 +4,16 @@ import s from "./TextArea.module.css";
 
 class TextArea extends Component {
   render() {
-    const { rows, label, name, value, placeholder, maxLength, onChange } =
-      this.props;
+    const {
+      rows,
+      label,
+      name,
+      value,
+      placeholder,
+      maxLength,
+      onChange,
+      onBlur,
+    } = this.props;
 
     return (
       <label className={s.label}>
@@ -18,6 +26,7 @@ class TextArea extends Component {
           placeholder={placeholder}
           maxLength={maxLength}
           onChange={onChange}
+          onBlur={onBlur}
           required
         ></textarea>
 

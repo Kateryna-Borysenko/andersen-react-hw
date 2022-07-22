@@ -13,6 +13,7 @@ class Input extends Component {
       pattern,
       message,
       onChange,
+      onBlur,
     } = this.props;
 
     return (
@@ -28,6 +29,7 @@ class Input extends Component {
             className={s.input}
             pattern={pattern}
             title={message}
+            onBlur={onBlur}
             required
           />
         </label>

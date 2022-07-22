@@ -29,6 +29,7 @@ class Form extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.phoneNumberMask = this.phoneNumberMask.bind(this);
+    this.onBlur = this.onBlur.bind(this);
   }
 
   handleSubmit(e) {
@@ -55,10 +56,10 @@ class Form extends Component {
 
     const { name, value } = e.target;
 
-    if (name === "name" || "surname") {
-      this.setState({ [name]: normalize(value).trim() });
+    if (name === "name" || name === "surname") {
+      this.setState({ [name]: normalize(value) });
     } else {
-      this.setState({ [name]: value.trim() });
+      this.setState({ [name]: value });
     }
   }
 
@@ -75,6 +76,11 @@ class Form extends Component {
     this.setState({ [e.target.name]: value });
   }
 
+  onBlur(e) {
+    const { name, value } = e.target;
+    this.setState({ [name]: value.trim() });
+  }
+
   render() {
     return (
       <form className={s.form}>
@@ -87,8 +93,8 @@ class Form extends Component {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           message="Фамилия может содержать только буквы, апостроф, тире и пробелы."
           onChange={this.handleChange}
+          onBlur={this.onBlur}
         />
-
         {/* {isError && <ErrorMsg message={'Error Message'} />} */}
 
         <Input
@@ -100,6 +106,7 @@ class Form extends Component {
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           message="Фамилия может содержать только буквы, апостроф, тире и пробелы."
           onChange={this.handleChange}
+          onBlur={this.onBlur}
         />
         {/* {isError && <ErrorMsg message={''} />} */}
 
@@ -109,6 +116,7 @@ class Form extends Component {
           name="birthDate"
           value={this.state.birthDate}
           onChange={this.handleChange}
+          onBlur={this.onBlur}
         />
         {/* {isError && <ErrorMsg message={''} />} */}
 
@@ -121,6 +129,7 @@ class Form extends Component {
           pattern="\d{1}-\d{4}-\d{2}-\d{2}"
           message="Номер телефона должен состоять из максимум 12 символом с учетом дефисов в формате: 7-7777-77-77"
           onChange={this.phoneNumberMask}
+          onBlur={this.onBlur}
         />
         {/* {isError && <ErrorMsg message={''} />} */}
 
@@ -133,6 +142,7 @@ class Form extends Component {
           pattern=""
           message="Должен начинаться с https://"
           onChange={this.handleChange}
+          onBlur={this.onBlur}
         />
         {/* {isError && <ErrorMsg message={''} />} */}
 
@@ -144,6 +154,7 @@ class Form extends Component {
           placeholder="Напишите коротко о себе ..."
           maxLength={600}
           onChange={this.handleChange}
+          onBlur={this.onBlur}
         />
         {/* {isError && <ErrorMsg message={''} />} */}
 
@@ -155,6 +166,7 @@ class Form extends Component {
           placeholder="Перечислите стек технологий которыми Вы владеете..."
           maxLength={600}
           onChange={this.handleChange}
+          onBlur={this.onBlur}
         />
         {/* {isError && <ErrorMsg message={''} />} */}
 
@@ -166,6 +178,7 @@ class Form extends Component {
           placeholder="Опишите свой последний проект..."
           maxLength={600}
           onChange={this.handleChange}
+          onBlur={this.onBlur}
         />
         {/* {isError && <ErrorMsg message={''} />} */}
 
@@ -176,6 +189,7 @@ class Form extends Component {
             type="submit"
             // disabled={disabled}
             onClick={this.handleSubmit}
+            onBlur={this.onBlur}
           />
         </div>
       </form>
