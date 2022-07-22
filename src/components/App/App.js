@@ -6,9 +6,11 @@ import s from "./App.module.css";
 class App extends Component {
   state = {
     data: [],
+    isFormOpen: true,
   };
 
   handleAddData = (newData) => {
+    //TODO -> написать проверку на дубликаты
     this.setState((prevState) => ({
       data: [
         ...prevState.data,
@@ -16,6 +18,7 @@ class App extends Component {
           ...newData,
         },
       ],
+      isFormOpen: false,
     }));
   };
 
@@ -26,16 +29,8 @@ class App extends Component {
           <div className={s.contentWrap}>
             <h1 className={s.title}>Создание анкеты</h1>
             <img src={image} className={s.image} alt="brain" />
-            <p className={s.description}>
-              Lorem Ipsum — это просто текст-пустышка полиграфической и наборной
-              индустрии. Lorem Ipsum был стандартным фиктивным текстом в отрасли
-              с 1500-х годов, когда неизвестный печатник взял гранку шрифта и
-              перемешал ее, чтобы сделать книгу образцов шрифтов. Он пережил не
-              только пять столетий, но и скачок в электронный набор текста,
-              оставаясь практически неизменным.
-            </p>
           </div>
-          <Form onSubmit={this.handleAddData} />
+          {this.state.isFormOpen && <Form onSubmit={this.handleAddData} />}
         </div>
       </Container>
     );

@@ -15,7 +15,6 @@ const INITIAL_STATE = {
   technologies: "",
   lastProject: "",
   isError: false,
-  disabled: false,
 };
 
 class Form extends Component {
@@ -82,6 +81,10 @@ class Form extends Component {
   }
 
   render() {
+    const isDisabledBtn = Object.values(this.state).some(
+      (value) => value === ""
+    );
+
     return (
       <form className={s.form}>
         <Input
@@ -187,7 +190,7 @@ class Form extends Component {
           <Button
             text="Сохранить"
             type="submit"
-            // disabled={disabled}
+            disabled={isDisabledBtn}
             onClick={this.handleSubmit}
             onBlur={this.onBlur}
           />

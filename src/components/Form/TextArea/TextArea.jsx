@@ -31,7 +31,7 @@ class TextArea extends Component {
         ></textarea>
 
         <div className={s.message}>
-          осталось символов : {maxLength - value.length} / {maxLength}
+          Осталось символов {maxLength - value.length} / {maxLength}
         </div>
       </label>
     );
