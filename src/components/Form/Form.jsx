@@ -3,7 +3,6 @@ import s from "./Form.module.css";
 import Input from "./Input/Input";
 import TextArea from "./TextArea/TextArea";
 import Button from "../common/Button/Button";
-// import ErrorMsg from '../common/ErrorMsg/ErrorMsg'
 
 const INITIAL_STATE = {
   name: "",
@@ -14,7 +13,6 @@ const INITIAL_STATE = {
   about: "",
   technologies: "",
   lastProject: "",
-  isError: false,
 };
 
 class Form extends Component {
@@ -23,25 +21,19 @@ class Form extends Component {
     this.state = {
       ...INITIAL_STATE,
     };
-
-    this.initialState = Object.assign({}, this.state);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.phoneNumberMask = this.phoneNumberMask.bind(this);
-    this.onBlur = this.onBlur.bind(this);
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit({ ...this.state });
     this.reset();
-  }
-
-  reset = () => {
-    this.setState(this.initialState);
   };
 
-  handleChange(e) {
+  reset = () => {
+    this.setState({ ...INITIAL_STATE });
+  };
+
+  handleChange = (e) => {
     const normalize = (text) => {
       const words = text.split(" ");
       return words
@@ -60,9 +52,9 @@ class Form extends Component {
     } else {
       this.setState({ [name]: value });
     }
-  }
+  };
 
-  phoneNumberMask(e) {
+  phoneNumberMask = (e) => {
     const phoneMask = e.target.value
       .replace(/\D/g, "")
       .match(/(\d{0,1})(\d{0,4})(\d{0,2})(\d{0,2})/);
@@ -73,12 +65,12 @@ class Form extends Component {
       .join("-");
 
     this.setState({ [e.target.name]: value });
-  }
+  };
 
-  onBlur(e) {
+  onBlur = (e) => {
     const { name, value } = e.target;
     this.setState({ [name]: value.trim() });
-  }
+  };
 
   render() {
     const isDisabledBtn = Object.values(this.state).some(
@@ -94,11 +86,10 @@ class Form extends Component {
           value={this.state.name}
           placeholder="пример: Екатерина"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          message="Фамилия может содержать только буквы, апостроф, тире и пробелы."
+          title="Фамилия может содержать только буквы, апостроф, тире и пробелы."
           onChange={this.handleChange}
           onBlur={this.onBlur}
         />
-        {/* {isError && <ErrorMsg message={'Error Message'} />} */}
 
         <Input
           label="Фамилия"
@@ -106,12 +97,11 @@ class Form extends Component {
           name="surname"
           value={this.state.surname}
           placeholder="пример: Борисенко"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          message="Фамилия может содержать только буквы, апостроф, тире и пробелы."
+          pattern='^[a-zA-Zа-яА-Я]+(([" -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$'
+          title="Фамилия может содержать только буквы, апостроф, тире и пробелы."
           onChange={this.handleChange}
           onBlur={this.onBlur}
         />
-        {/* {isError && <ErrorMsg message={''} />} */}
 
         <Input
           label="Дата Рождения"
@@ -121,7 +111,6 @@ class Form extends Component {
           onChange={this.handleChange}
           onBlur={this.onBlur}
         />
-        {/* {isError && <ErrorMsg message={''} />} */}
 
         <Input
           label="Телефон"
@@ -130,11 +119,10 @@ class Form extends Component {
           value={this.state.phone}
           placeholder="пример: 7-7777-77-77"
           pattern="\d{1}-\d{4}-\d{2}-\d{2}"
-          message="Номер телефона должен состоять из максимум 12 символом с учетом дефисов в формате: 7-7777-77-77"
+          title="Номер телефона должен состоять из максимум 12 символом с учетом дефисов в формате: 7-7777-77-77"
           onChange={this.phoneNumberMask}
           onBlur={this.onBlur}
         />
-        {/* {isError && <ErrorMsg message={''} />} */}
 
         <Input
           label="Сайт"
@@ -143,11 +131,10 @@ class Form extends Component {
           value={this.state.website}
           placeholder="пример: https://website.com"
           pattern=""
-          message="Должен начинаться с https://"
+          title="Website должен начинаться с https://"
           onChange={this.handleChange}
           onBlur={this.onBlur}
         />
-        {/* {isError && <ErrorMsg message={''} />} */}
 
         <TextArea
           label="О себе"
@@ -159,7 +146,6 @@ class Form extends Component {
           onChange={this.handleChange}
           onBlur={this.onBlur}
         />
-        {/* {isError && <ErrorMsg message={''} />} */}
 
         <TextArea
           label="Стек технологий"
@@ -171,7 +157,6 @@ class Form extends Component {
           onChange={this.handleChange}
           onBlur={this.onBlur}
         />
-        {/* {isError && <ErrorMsg message={''} />} */}
 
         <TextArea
           label="Описание последнего проекта"
@@ -183,7 +168,6 @@ class Form extends Component {
           onChange={this.handleChange}
           onBlur={this.onBlur}
         />
-        {/* {isError && <ErrorMsg message={''} />} */}
 
         <div className={s.buttonWrapper}>
           <Button text="Отменить" type="button" onClick={this.reset} />

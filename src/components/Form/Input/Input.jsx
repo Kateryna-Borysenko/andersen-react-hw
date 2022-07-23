@@ -10,10 +10,10 @@ class Input extends Component {
       name,
       value,
       placeholder,
-      pattern,
-      message,
       onChange,
       onBlur,
+      title,
+      pattern,
     } = this.props;
 
     return (
@@ -27,9 +27,9 @@ class Input extends Component {
             placeholder={placeholder}
             onChange={onChange}
             className={s.input}
-            pattern={pattern}
-            title={message}
             onBlur={onBlur}
+            title={title}
+            pattern={pattern}
             required
           />
         </label>
