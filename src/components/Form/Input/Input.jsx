@@ -4,22 +4,33 @@ import s from "./Input.module.css";
 
 class Input extends Component {
   render() {
-    const { label, type, name, placeholder, pattern, message } = this.props;
+    const {
+      label,
+      type,
+      name,
+      value,
+      placeholder,
+      onChange,
+      onBlur,
+      title,
+      pattern,
+    } = this.props;
 
     return (
       <>
         <label className={s.label}>
           {label}
           <input
-            value={name.value}
+            value={value}
             type={type}
             name={name}
             placeholder={placeholder}
-            onChange={(e) => this.props.onChange(e)}
+            onChange={onChange}
             className={s.input}
+            onBlur={onBlur}
+            title={title}
             pattern={pattern}
-            message={message}
-            // required
+            required
           />
         </label>
       </>
@@ -33,7 +44,7 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   pattern: PropTypes.string,
-  message: PropTypes.string,
+  title: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
 };

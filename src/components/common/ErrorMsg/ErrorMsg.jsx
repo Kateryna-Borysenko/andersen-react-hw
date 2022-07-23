@@ -6,7 +6,7 @@ class ErrorMsg extends Component {
   render() {
     const { message } = this.props;
 
-    return <p className={s.error}>{message || "Something went wrong ..."}</p>;
+    return <p className={s.error}>{message || "Введите верное значение"}</p>;
   }
 }
 
