@@ -6,7 +6,6 @@
   box-sizing: border-box;
   margin: 50px auto;
   text-align: center;
-  /* outline: 1px solid white; */
 }
 
 @media screen and (min-width: 480px) {

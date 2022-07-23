@@ -1,17 +1,27 @@
 import React, { Component } from "react";
 import Container from "../common/Container/Container";
 import Form from "../Form/Form";
-import brain from "../../images/brain.png";
-import rocket from "../../images/rocket.png";
 import s from "./App.module.css";
+import Profile from "../Profile/Profile";
+
 class App extends Component {
   state = {
-    data: [],
+    data: [
+      {
+        name: "Екатерина",
+        surname: "Борисенко",
+        birthDate: "1993-02-10",
+        phone: "1-2345-67-89",
+        website: "https://my-website.com",
+        about: "I'm Software Engineer",
+        technologies: "CSS HTML JS React Node.js Express Mongo DB",
+        lastProject: "This project is the last",
+      },
+    ],
     isFormOpen: true,
   };
 
   handleAddData = (newData) => {
-    //TODO -> написать проверку на дубликаты
     this.setState((prevState) => ({
       data: [
         ...prevState.data,
@@ -25,18 +35,15 @@ class App extends Component {
 
   render() {
     const { isFormOpen } = this.state;
+    console.log("🍒 isFormOpen", isFormOpen);
+
+    const { data } = this.state;
+    console.log("🍒 data", data);
+
     return (
       <Container>
-        <div className={s.wrap}>
-          <div className={s.contentWrap}>
-            <h1 className={s.title}>Создание анкеты</h1>
-            {!isFormOpen && <img src={brain} className={s.image} alt="brain" />}
-            {isFormOpen && (
-              <img src={rocket} className={s.image} alt="rocket" />
-            )}
-          </div>
-          {isFormOpen && <Form onSubmit={this.handleAddData} />}
-        </div>
+        {isFormOpen && <Form onSubmit={this.handleAddData} />}
+        {!isFormOpen && <Profile data={data} />}
       </Container>
     );
   }
