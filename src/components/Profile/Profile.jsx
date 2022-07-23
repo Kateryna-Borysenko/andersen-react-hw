@@ -2,13 +2,12 @@ import React, { Component } from "react";
 import Header from "../common/Header/Header";
 import s from "./Profile.module.css";
 import image from "../../images/brain.png";
-import Button from "../common/Button/Button";
 
 class Profile extends Component {
   render() {
     const {
-      // name,
-      // surname,
+      name,
+      surname,
       birthDate,
       phone,
       website,
@@ -16,13 +15,47 @@ class Profile extends Component {
       technologies,
       lastProject,
     } = this.props.data;
-    console.log();
+
+    console.log(this.props.data);
+
     return (
       <>
         <div className={s.wrap}>
-          {/* <Header text={`${name} ${surname}`} /> */}
-          <Header text="Борисенко Екатерина" />
+          <Header text={`${name} ${surname}`} />
           <img src={image} className={s.image} alt="brain" />
+          <table>
+            <tr>
+              <td>Дата рождения</td>
+              <td>{birthDate}</td>
+            </tr>
+            <tr>
+              <td>Телефон</td>
+              <td>{phone}</td>
+            </tr>
+            <tr>
+              <td>Сайт</td>
+              <td>{website}</td>
+            </tr>
+            <tr>
+              <td>О себе</td>
+              <td>{about}</td>
+            </tr>
+            <tr>
+              <td>Стек технологий</td>
+              <td>{technologies}</td>
+            </tr>
+            <tr>
+              <td>Описание последнего проекта</td>
+              <td>{lastProject}</td>
+            </tr>
+          </table>
+        </div>
+
+        {/* Заглушка для тестирования */}
+
+        {/* <div className={s.wrap}>
+          <Header text='Борисенко Екатерина' />
+          <img src={image} className={s.image} alt='brain' />
 
           <table>
             <tr>
@@ -50,7 +83,7 @@ class Profile extends Component {
               <td>This project is the last</td>
             </tr>
           </table>
-        </div>
+        </div> */}
       </>
     );
   }
