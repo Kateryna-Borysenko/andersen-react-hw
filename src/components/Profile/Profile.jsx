@@ -5,49 +5,51 @@ import image from "../../images/brain.png";
 
 class Profile extends Component {
   render() {
-    const {
-      name,
-      surname,
-      birthDate,
-      phone,
-      website,
-      about,
-      technologies,
-      lastProject,
-    } = this.props.data;
+    // const {
+    //   name,
+    //   surname,
+    //   birthDate,
+    //   phone,
+    //   website,
+    //   about,
+    //   technologies,
+    //   lastProject,
+    // } = this.props.data;
 
-    console.log(this.props.data);
+    // console.log(this.props.data);
 
     return (
       <>
         <div className={s.wrap}>
-          <Header text={`${name} ${surname}`} />
+          <Header text={`${this.props.data.name} ${this.props.data.surname}`} />
           <img src={image} className={s.image} alt="brain" />
           <table>
-            <tr>
-              <td>Дата рождения</td>
-              <td>{birthDate}</td>
-            </tr>
-            <tr>
-              <td>Телефон</td>
-              <td>{phone}</td>
-            </tr>
-            <tr>
-              <td>Сайт</td>
-              <td>{website}</td>
-            </tr>
-            <tr>
-              <td>О себе</td>
-              <td>{about}</td>
-            </tr>
-            <tr>
-              <td>Стек технологий</td>
-              <td>{technologies}</td>
-            </tr>
-            <tr>
-              <td>Описание последнего проекта</td>
-              <td>{lastProject}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>Дата рождения</td>
+                <td>{this.props.data.birthDate}</td>
+              </tr>
+              <tr>
+                <td>Телефон</td>
+                <td>{this.props.data.phone}</td>
+              </tr>
+              <tr>
+                <td>Сайт</td>
+                <td>{this.props.data.website}</td>
+              </tr>
+              <tr>
+                <td>О себе</td>
+                <td>{this.props.data.about}</td>
+              </tr>
+              <tr>
+                <td>Стек технологий</td>
+                <td>{this.props.data.technologies}</td>
+              </tr>
+              <tr>
+                <td>Описание последнего проекта</td>
+                <td>{this.props.data.lastProject}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
 
