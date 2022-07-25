@@ -36,24 +36,8 @@ class Form extends Component {
   };
 
   handleChange = (e) => {
-    const normalize = (text) => {
-      const words = text.split(" ");
-      return words
-        .map((word) => {
-          const capLetter = word.charAt(0).toUpperCase();
-          const rest = word.substring(1);
-          return `${capLetter}${rest}`;
-        })
-        .join(" ");
-    };
-
     const { name, value } = e.target;
-
-    if (name === "name" || name === "surname") {
-      this.setState({ [name]: normalize(value) });
-    } else {
-      this.setState({ [name]: value });
-    }
+    this.setState({ [name]: value });
   };
 
   phoneNumberMask = (e) => {
@@ -88,16 +72,17 @@ class Form extends Component {
           </div>
         </div>
 
-        <form className={s.form}>
+        <form className={s.form} onSubmit={this.handleSubmit}>
           <Input
             label="Имя"
             type="text"
             name="name"
             value={this.state.name}
             placeholder="пример: Екатерина"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Фамилия может содержать только буквы, апостроф, тире и пробелы."
+            pattern="^[A-ZА-Я].*"
+            errorMessage="Имя должно начинаться с большой буквы"
             onChange={this.handleChange}
+            required={true}
             onBlur={this.onBlur}
           />
 
@@ -107,9 +92,10 @@ class Form extends Component {
             name="surname"
             value={this.state.surname}
             placeholder="пример: Борисенко"
-            pattern='^[a-zA-Zа-яА-Я]+(([" -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$'
-            title="Фамилия может содержать только буквы, апостроф, тире и пробелы."
+            pattern="^[A-ZА-Я].*"
+            errorMessage="Фамилия должна начинаться с большой буквы"
             onChange={this.handleChange}
+            required={true}
             onBlur={this.onBlur}
           />
 
@@ -120,6 +106,7 @@ class Form extends Component {
             value={this.state.birthDate}
             onChange={this.handleChange}
             onBlur={this.onBlur}
+            required={true}
           />
 
           <Input
@@ -129,9 +116,10 @@ class Form extends Component {
             value={this.state.phone}
             placeholder="пример: 7-7777-77-77"
             pattern="\d{1}-\d{4}-\d{2}-\d{2}"
-            title="Номер телефона должен состоять из максимум 12 символом с учетом дефисов в формате: 7-7777-77-77"
+            errorMessage="Номер телефона должен состоять из максимум 12 символом с учетом дефисов в формате: 7-7777-77-77"
             onChange={this.phoneNumberMask}
             onBlur={this.onBlur}
+            required={true}
           />
 
           <Input
@@ -140,10 +128,11 @@ class Form extends Component {
             name="website"
             value={this.state.website}
             placeholder="пример: https://website.com"
-            pattern=""
-            title="Website должен начинаться с https://"
+            pattern="^(https?:\/\/)?([0-9A-Za-z]+\.)([A-Za-z]+)([\/\?&]|$)"
+            errorMessage="Website должен быть в формате https://website.com или http://website.com"
             onChange={this.handleChange}
             onBlur={this.onBlur}
+            required={true}
           />
 
           <TextArea
@@ -181,13 +170,7 @@ class Form extends Component {
 
           <div className={s.buttonWrapper}>
             <Button text="Отменить" type="button" onClick={this.reset} />
-            <Button
-              text="Сохранить"
-              type="submit"
-              disabled={isDisabledBtn}
-              onClick={this.handleSubmit}
-              onBlur={this.onBlur}
-            />
+            <Button text="Сохранить" type="submit" disabled={isDisabledBtn} />
           </div>
         </form>
       </div>
