@@ -39,8 +39,8 @@ class Input extends Component {
             placeholder={placeholder}
             onChange={onChange}
             className={s.input}
-            focused={this.state.focused.toString()}
             onBlur={onBlur}
+            focused={this.state.focused.toString()}
             onFocus={this.handleFocus}
             pattern={pattern}
             required={required}

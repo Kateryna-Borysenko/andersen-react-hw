@@ -37,3 +37,18 @@ textarea::placeholder {
   font-size: 14px;
   font-weight: 300;
 }
+
+span {
+  font-size: 12px;
+  padding: 3px;
+  color: red;
+  display: none;
+}
+
+textarea:invalid[focused="true"] {
+  border: 1px solid red;
+}
+
+textarea:invalid[focused="true"] ~ span {
+  display: block;
+}

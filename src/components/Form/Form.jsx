@@ -116,7 +116,7 @@ class Form extends Component {
             value={this.state.phone}
             placeholder="пример: 7-7777-77-77"
             pattern="\d{1}-\d{4}-\d{2}-\d{2}"
-            errorMessage="Номер телефона должен состоять из максимум 12 символом с учетом дефисов в формате: 7-7777-77-77"
+            errorMessage="Номер телефона должен состоять из 12 символом в формате: 7-7777-77-77"
             onChange={this.phoneNumberMask}
             onBlur={this.onBlur}
             required={true}
@@ -144,6 +144,9 @@ class Form extends Component {
             maxLength={600}
             onChange={this.handleChange}
             onBlur={this.onBlur}
+            required={true}
+            pattern="^(?:(?![\s\n]+$)[\s\S])+$"
+            errorMessage="Поле обязательное для заполнения"
           />
 
           <TextArea
@@ -155,6 +158,9 @@ class Form extends Component {
             maxLength={600}
             onChange={this.handleChange}
             onBlur={this.onBlur}
+            required={true}
+            pattern="^(?:(?![\s\n]+$)[\s\S])+$"
+            errorMessage="Поле обязательное для заполнения"
           />
 
           <TextArea
@@ -166,6 +172,9 @@ class Form extends Component {
             maxLength={600}
             onChange={this.handleChange}
             onBlur={this.onBlur}
+            required={true}
+            pattern="^(?:(?![\s\n]+$)[\s\S])+$"
+            errorMessage="Поле обязательное для заполнения"
           />
 
           <div className={s.buttonWrapper}>

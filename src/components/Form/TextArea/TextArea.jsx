@@ -3,6 +3,17 @@ import PropTypes from "prop-types";
 import s from "./TextArea.module.css";
 
 class TextArea extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      focused: false,
+    };
+  }
+
+  handleFocus = (e) => {
+    this.setState({ focused: true });
+  };
+
   render() {
     const {
       rows,
@@ -13,6 +24,9 @@ class TextArea extends Component {
       maxLength,
       onChange,
       onBlur,
+      required,
+      pattern,
+      errorMessage,
     } = this.props;
 
     return (
@@ -27,8 +41,12 @@ class TextArea extends Component {
           maxLength={maxLength}
           onChange={onChange}
           onBlur={onBlur}
-          required
+          focused={this.state.focused.toString()}
+          onFocus={this.handleFocus}
+          pattern={pattern}
+          required={required}
         ></textarea>
+        <span>{errorMessage}</span>
 
         <div className={s.message}>
           Осталось символов {maxLength - value.length} / {maxLength}
