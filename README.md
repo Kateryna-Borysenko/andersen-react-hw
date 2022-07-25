@@ -42,6 +42,7 @@
 # `ДЗ №2`
 
  <img src="./src/images/screen_2.png" width="900" alt="screenshot">
+ <img src="./src/images/screen_3.png" width="900" alt="screenshot">
 
 Используя форму-анкету из предыдущего ДЗ наполним её логикой.
 

@@ -3,6 +3,17 @@ import PropTypes from "prop-types";
 import s from "./Input.module.css";
 
 class Input extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      focused: false,
+    };
+  }
+
+  handleFocus = (e) => {
+    this.setState({ focused: true });
+  };
+
   render() {
     const {
       label,
@@ -11,9 +22,10 @@ class Input extends Component {
       value,
       placeholder,
       onChange,
-      onBlur,
-      title,
+      errorMessage,
       pattern,
+      onBlur,
+      required,
     } = this.props;
 
     return (
@@ -27,11 +39,13 @@ class Input extends Component {
             placeholder={placeholder}
             onChange={onChange}
             className={s.input}
+            focused={this.state.focused.toString()}
             onBlur={onBlur}
-            title={title}
+            onFocus={this.handleFocus}
             pattern={pattern}
-            required
+            required={required}
           />
+          <span>{errorMessage}</span>
         </label>
       </>
     );
@@ -44,9 +58,10 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   pattern: PropTypes.string,
-  title: PropTypes.string,
+  errorMessage: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func.isRequired,
+  required: PropTypes.bool.isRequired,
 };
 
 export default Input;

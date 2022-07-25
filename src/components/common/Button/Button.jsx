@@ -4,7 +4,7 @@ import s from "./Button.module.css";
 
 class Button extends Component {
   render() {
-    const { text, icon, disabled, onClick } = this.props;
+    const { text, disabled, onClick } = this.props;
 
     return (
       <button
@@ -12,21 +12,18 @@ class Button extends Component {
         onClick={onClick}
         disabled={disabled}
       >
-        {icon && <img src={icon} alt={text} />}
-        <span>{text}</span>
+        {text}
       </button>
     );
   }
 }
 
 Button.defaultProps = {
-  icon: null,
   onClick: () => {},
 };
 
 Button.propTypes = {
   text: PropTypes.string.isRequired,
-  icon: PropTypes.string,
   disabled: PropTypes.bool,
 };
 
