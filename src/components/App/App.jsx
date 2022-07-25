@@ -7,19 +7,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
+      data: {},
       isFormOpen: true,
     };
   }
 
   handleAddData = (newData) => {
     this.setState((prevState) => ({
-      data: [
-        ...prevState.data,
-        {
-          ...newData,
-        },
-      ],
+      data: { ...prevState.data, ...newData },
       isFormOpen: false,
     }));
   };
