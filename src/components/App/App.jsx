@@ -3,30 +3,38 @@ import Container from "../common/Container/Container";
 import Form from "../Form/Form";
 import Profile from "../Profile/Profile";
 
+const INITIAL_STATE = {
+  name: "",
+  surname: "",
+  birthday: "",
+  phone: "",
+  website: "",
+  about: "",
+  technologies: "",
+  project: "",
+
+  submitted: false,
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: {},
-      isFormOpen: true,
+      ...INITIAL_STATE,
     };
   }
 
   handleAddData = (newData) => {
-    this.setState((prevState) => ({
-      data: { ...prevState.data, ...newData },
-      isFormOpen: false,
-    }));
+    this.setState({ ...newData, submitted: true });
   };
 
   render() {
-    const { isFormOpen } = this.state;
-    const { data } = this.state;
+    const { submitted, ...data } = this.state;
 
     return (
       <Container>
-        {isFormOpen && <Form onSubmit={this.handleAddData} />}
-        {!isFormOpen && <Profile data={data} />}
+        {!submitted && <Form onSubmit={this.handleAddData} />}
+        {submitted && <Profile data={data} />}
       </Container>
     );
   }

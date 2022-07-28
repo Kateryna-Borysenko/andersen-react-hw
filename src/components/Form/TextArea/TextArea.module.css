@@ -31,7 +31,7 @@ textarea::placeholder {
 }
 
 .message {
-  margin: 5px 0;
+  margin: 5px 0 0 0;
   color: #808080;
   text-align: left;
   font-size: 14px;

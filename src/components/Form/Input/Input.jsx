@@ -5,47 +5,29 @@ import s from "./Input.module.css";
 class Input extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      focused: false,
-    };
+    this.type = this.props.type || "text";
   }
 
-  handleFocus = (e) => {
-    this.setState({ focused: true });
+  handleChange = (e) => {
+    this.props.onChange(this.props.name, e);
   };
 
   render() {
-    const {
-      label,
-      type,
-      name,
-      value,
-      placeholder,
-      onChange,
-      errorMessage,
-      pattern,
-      onBlur,
-      required,
-    } = this.props;
+    const { label, type, name, value, placeholder, pattern } = this.props;
 
     return (
       <>
         <label className={s.label}>
           {label}
           <input
-            value={value}
+            className={s.input}
             type={type}
             name={name}
+            value={value}
             placeholder={placeholder}
-            onChange={onChange}
-            className={s.input}
-            focused={this.state.focused.toString()}
-            onBlur={onBlur}
-            onFocus={this.handleFocus}
             pattern={pattern}
-            required={required}
+            onChange={this.handleChange}
           />
-          <span>{errorMessage}</span>
         </label>
       </>
     );
@@ -54,14 +36,11 @@ class Input extends Component {
 
 Input.propTypes = {
   label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   name: PropTypes.string.isRequired,
-  pattern: PropTypes.string,
-  errorMessage: PropTypes.string,
+  value: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  required: PropTypes.bool.isRequired,
+  pattern: PropTypes.string,
 };
 
 export default Input;

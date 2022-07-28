@@ -3,31 +3,24 @@ import PropTypes from "prop-types";
 import s from "./TextArea.module.css";
 
 class TextArea extends Component {
+  handleChange = (e) => {
+    this.props.onChange(this.props.name, e);
+  };
+
   render() {
-    const {
-      rows,
-      label,
-      name,
-      value,
-      placeholder,
-      maxLength,
-      onChange,
-      onBlur,
-    } = this.props;
+    const { rows, label, name, value, placeholder, maxLength } = this.props;
 
     return (
       <label className={s.label}>
         {label}
         <textarea
+          className={s.textArea}
           value={value}
           name={name}
-          className={s.textArea}
           rows={rows}
           placeholder={placeholder}
           maxLength={maxLength}
-          onChange={onChange}
-          onBlur={onBlur}
-          required
+          onChange={this.handleChange}
         ></textarea>
 
         <div className={s.message}>
@@ -44,7 +37,6 @@ TextArea.propTypes = {
   name: PropTypes.string.isRequired,
   rows: PropTypes.number.isRequired,
   placeholder: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
   maxLength: PropTypes.number.isRequired,
 };
 
