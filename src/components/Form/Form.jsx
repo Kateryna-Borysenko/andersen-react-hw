@@ -172,7 +172,6 @@ class Form extends Component {
       });
     }
   };
-  // this.reset()
 
   reset = () => {
     this.setState({ ...INITIAL_STATE });
@@ -193,7 +192,7 @@ class Form extends Component {
           </div>
         </div>
 
-        <form className={s.form} onSubmit={this.handleSubmit}>
+        <form className={s.form}>
           <Input
             label="Имя"
             name="name"
@@ -275,7 +274,11 @@ class Form extends Component {
 
           <div className={s.buttonWrapper}>
             <Button text="Отменить" type="button" onClick={this.reset} />
-            <Button text="Сохранить" type="submit" />
+            <Button
+              text="Сохранить"
+              type="button"
+              onClick={this.handleSubmit}
+            />
           </div>
         </form>
       </div>
