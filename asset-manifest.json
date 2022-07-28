@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/andersen-react-hw/static/css/main.77a182a8.css",
-    "main.js": "/andersen-react-hw/static/js/main.4a478243.js",
+    "main.css": "/andersen-react-hw/static/css/main.6425f6ec.css",
+    "main.js": "/andersen-react-hw/static/js/main.c6827595.js",
     "static/media/brain.png": "/andersen-react-hw/static/media/brain.fb362c55c063d4b86198.png",
     "static/media/rocket.png": "/andersen-react-hw/static/media/rocket.60282d29823e05d421a8.png",
     "index.html": "/andersen-react-hw/index.html",
-    "main.77a182a8.css.map": "/andersen-react-hw/static/css/main.77a182a8.css.map",
-    "main.4a478243.js.map": "/andersen-react-hw/static/js/main.4a478243.js.map"
+    "main.6425f6ec.css.map": "/andersen-react-hw/static/css/main.6425f6ec.css.map",
+    "main.c6827595.js.map": "/andersen-react-hw/static/js/main.c6827595.js.map"
   },
   "entrypoints": [
-    "static/css/main.77a182a8.css",
-    "static/js/main.4a478243.js"
+    "static/css/main.6425f6ec.css",
+    "static/js/main.c6827595.js"
   ]
 }
