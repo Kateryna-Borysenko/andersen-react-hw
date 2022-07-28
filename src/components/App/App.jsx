@@ -1,43 +1,23 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import Container from "../common/Container/Container";
 import Form from "../Form/Form";
 import Profile from "../Profile/Profile";
 
-const INITIAL_STATE = {
-  name: "",
-  surname: "",
-  birthday: "",
-  phone: "",
-  website: "",
-  about: "",
-  technologies: "",
-  project: "",
+const App = () => {
+  const [data, setData] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
-  submitted: false,
-};
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ...INITIAL_STATE,
-    };
-  }
-
-  handleAddData = (newData) => {
-    this.setState({ ...newData, submitted: true });
+  const handleAddData = (newData) => {
+    setData(newData);
+    setSubmitted(true);
   };
 
-  render() {
-    const { submitted, ...data } = this.state;
-
-    return (
-      <Container>
-        {!submitted && <Form onSubmit={this.handleAddData} />}
-        {submitted && <Profile data={data} />}
-      </Container>
-    );
-  }
-}
+  return (
+    <Container>
+      {!submitted && <Form onSubmit={handleAddData} />}
+      {submitted && <Profile data={data} />}
+    </Container>
+  );
+};
 
 export default App;
