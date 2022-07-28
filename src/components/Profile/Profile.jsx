@@ -8,12 +8,12 @@ class Profile extends Component {
     const {
       name,
       surname,
-      birthDate,
+      birthday,
       phone,
       website,
       about,
       technologies,
-      lastProject,
+      project,
     } = this.props.data;
 
     return (
@@ -25,7 +25,7 @@ class Profile extends Component {
             <tbody>
               <tr>
                 <td>Дата рождения</td>
-                <td>{birthDate}</td>
+                <td>{birthday}</td>
               </tr>
               <tr>
                 <td>Телефон</td>
@@ -45,7 +45,7 @@ class Profile extends Component {
               </tr>
               <tr>
                 <td>Описание последнего проекта</td>
-                <td>{lastProject}</td>
+                <td>{project}</td>
               </tr>
             </tbody>
           </table>
