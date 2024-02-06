@@ -1,4 +1,4 @@
-# `ДЗ №1`
+# Форма
 
  <img src="./src/images/screen_1.png" width="900" alt="screenshot">
 
@@ -39,7 +39,7 @@
 
 <br>
 
-# `ДЗ №2`
+# 
 
  <img src="./src/images/screen_2.png" width="900" alt="screenshot">
  <img src="./src/images/screen_3.png" width="900" alt="screenshot">
