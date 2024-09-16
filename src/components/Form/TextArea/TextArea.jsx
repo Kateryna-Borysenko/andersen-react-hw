@@ -1,43 +1,30 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
 import s from "./TextArea.module.css";
 
-class TextArea extends Component {
-  handleChange = (e) => {
-    this.props.onChange(this.props.name, e);
+const TextArea = (props) => {
+  const handleChange = (e) => {
+    props.onChange(props.name, e);
   };
 
-  render() {
-    const { rows, label, name, value, placeholder, maxLength } = this.props;
+  const { rows, label, name, value, placeholder, maxLength } = props;
 
-    return (
-      <label className={s.label}>
-        {label}
-        <textarea
-          className={s.textArea}
-          value={value}
-          name={name}
-          rows={rows}
-          placeholder={placeholder}
-          maxLength={maxLength}
-          onChange={this.handleChange}
-        ></textarea>
+  return (
+    <label className={s.label}>
+      {label}
+      <textarea
+        className={s.textArea}
+        value={value}
+        name={name}
+        rows={rows}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        onChange={handleChange}
+      ></textarea>
 
-        <div className={s.message}>
-          Осталось символов {maxLength - value.length} / {maxLength}
-        </div>
-      </label>
-    );
-  }
-}
-
-TextArea.propTypes = {
-  label: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  rows: PropTypes.number.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  maxLength: PropTypes.number.isRequired,
+      <div className={s.message}>
+        Осталось символов {maxLength - value.length} / {maxLength}
+      </div>
+    </label>
+  );
 };
 
 export default TextArea;

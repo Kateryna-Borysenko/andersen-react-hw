@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { useState } from "react";
 import s from "./Form.module.css";
 import Input from "./Input/Input";
 import TextArea from "./TextArea/TextArea";
@@ -27,15 +27,10 @@ const INITIAL_STATE = {
   projectError: "",
 };
 
-class Form extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ...INITIAL_STATE,
-    };
-  }
+const Form = ({ onSubmit }) => {
+  const [customState, setState] = useState(INITIAL_STATE);
 
-  handleChangeInput = (name, e) => {
+  const handleChangeInput = (name, e) => {
     let value = e.target.value;
 
     if (name === "phone") {
@@ -48,16 +43,22 @@ class Form extends Component {
         .filter((item) => item !== "")
         .join("-");
 
-      this.setState({ [e.target.name]: value });
+      setState((customState) => ({
+        ...customState,
+        [e.target.name]: value,
+      }));
     } else {
-      this.setState({ [name]: value });
+      setState((customState) => ({
+        ...customState,
+        [e.target.name]: value,
+      }));
     }
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    const state = { ...this.state };
+    const state = { ...customState };
 
     let isError = false;
 
@@ -147,7 +148,7 @@ class Form extends Component {
     }
 
     if (isError) {
-      this.setState(state);
+      setState(state);
     } else {
       let {
         name,
@@ -160,7 +161,7 @@ class Form extends Component {
         project,
       } = state;
 
-      this.props.onSubmit({
+      onSubmit({
         name,
         surname,
         birthday,
@@ -173,117 +174,106 @@ class Form extends Component {
     }
   };
 
-  reset = () => {
-    this.setState({ ...INITIAL_STATE });
+  const reset = () => {
+    setState(INITIAL_STATE);
   };
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-
-  render() {
-    return (
-      <div className={s.container}>
-        <div className={s.wrap}>
-          <div className={s.contentWrap}>
-            <Header text="Создание анкеты" />
-            <img src={rocket} className={s.image} alt="rocket" />
-          </div>
+  return (
+    <div className={s.container}>
+      <div className={s.wrap}>
+        <div className={s.contentWrap}>
+          <Header text="Создание анкеты" />
+          <img src={rocket} className={s.image} alt="rocket" />
         </div>
-
-        <form className={s.form}>
-          <Input
-            label="Имя"
-            name="name"
-            value={this.state.name}
-            placeholder="пример: Екатерина"
-            onChange={this.handleChangeInput}
-          />
-          <ErrorMsg error={this.state.nameError} />
-
-          <Input
-            label="Фамилия"
-            name="surname"
-            value={this.state.surname}
-            placeholder="пример: Борисенко"
-            onChange={this.handleChangeInput}
-          />
-          <ErrorMsg error={this.state.surnameError} />
-
-          <Input
-            label="Дата Рождения"
-            type="date"
-            name="birthday"
-            value={this.state.birthday}
-            onChange={this.handleChangeInput}
-          />
-          <ErrorMsg error={this.state.birthdayError} />
-
-          <Input
-            label="Телефон"
-            type="tel"
-            name="phone"
-            value={this.state.phone}
-            placeholder="пример: X-XXXX-XX-XX"
-            onChange={this.handleChangeInput}
-          />
-          <ErrorMsg error={this.state.phoneError} />
-
-          <Input
-            label="Сайт"
-            name="website"
-            value={this.state.website}
-            placeholder="пример: http://website.com"
-            onChange={this.handleChangeInput}
-          />
-          <ErrorMsg error={this.state.websiteError} />
-
-          <TextArea
-            label="О себе"
-            name="about"
-            value={this.state.about}
-            rows={7}
-            placeholder="Напишите коротко о себе ..."
-            maxLength={600}
-            onChange={this.handleChangeInput}
-          />
-          <ErrorMsg error={this.state.aboutError} />
-
-          <TextArea
-            label="Стек технологий"
-            name="technologies"
-            value={this.state.technologies}
-            rows={7}
-            placeholder="Перечислите стек технологий которыми Вы владеете..."
-            maxLength={600}
-            onChange={this.handleChangeInput}
-          />
-          <ErrorMsg error={this.state.technologiesError} />
-
-          <TextArea
-            label="Описание последнего проекта"
-            name="project"
-            value={this.state.project}
-            rows={7}
-            placeholder="Опишите свой последний проект..."
-            maxLength={600}
-            onChange={this.handleChangeInput}
-          />
-          <ErrorMsg error={this.state.projectError} />
-
-          <div className={s.buttonWrapper}>
-            <Button text="Отменить" type="button" onClick={this.reset} />
-            <Button
-              text="Сохранить"
-              type="button"
-              onClick={this.handleSubmit}
-            />
-          </div>
-        </form>
       </div>
-    );
-  }
-}
+
+      <form className={s.form}>
+        <Input
+          label="Имя"
+          name="name"
+          value={customState.name}
+          placeholder="пример: Екатерина"
+          onChange={handleChangeInput}
+        />
+        <ErrorMsg error={customState.nameError} />
+
+        <Input
+          label="Фамилия"
+          name="surname"
+          value={customState.surname}
+          placeholder="пример: Борисенко"
+          onChange={handleChangeInput}
+        />
+        <ErrorMsg error={customState.surnameError} />
+
+        <Input
+          label="Дата Рождения"
+          type="date"
+          name="birthday"
+          value={customState.birthday}
+          onChange={handleChangeInput}
+        />
+        <ErrorMsg error={customState.birthdayError} />
+
+        <Input
+          label="Телефон"
+          type="tel"
+          name="phone"
+          value={customState.phone}
+          placeholder="пример: X-XXXX-XX-XX"
+          onChange={handleChangeInput}
+        />
+        <ErrorMsg error={customState.phoneError} />
+
+        <Input
+          label="Сайт"
+          name="website"
+          value={customState.website}
+          placeholder="пример: http://website.com"
+          onChange={handleChangeInput}
+        />
+        <ErrorMsg error={customState.websiteError} />
+
+        <TextArea
+          label="О себе"
+          name="about"
+          value={customState.about}
+          rows={7}
+          placeholder="Напишите коротко о себе ..."
+          maxLength={600}
+          onChange={handleChangeInput}
+        />
+        <ErrorMsg error={customState.aboutError} />
+
+        <TextArea
+          label="Стек технологий"
+          name="technologies"
+          value={customState.technologies}
+          rows={7}
+          placeholder="Перечислите стек технологий которыми Вы владеете..."
+          maxLength={600}
+          onChange={handleChangeInput}
+        />
+        <ErrorMsg error={customState.technologiesError} />
+
+        <TextArea
+          label="Описание последнего проекта"
+          name="project"
+          value={customState.project}
+          rows={7}
+          placeholder="Опишите свой последний проект..."
+          maxLength={600}
+          onChange={handleChangeInput}
+        />
+        <ErrorMsg error={customState.projectError} />
+
+        <div className={s.buttonWrapper}>
+          <Button text="Отменить" type="button" onClick={reset} />
+          <Button text="Сохранить" type="button" onClick={handleSubmit} />
+        </div>
+      </form>
+    </div>
+  );
+};
 
 export default Form;
